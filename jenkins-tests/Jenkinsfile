@@ -19,5 +19,10 @@ pipeline {
         sh 'cd jenkins-tests && npm t'
       }
     }
+    stage('RUN REMOTE'){
+      steps {
+        build job: 'Parameterized', parameters: [string(name: 'ROOT_ID', value: 'BUILD_ID')], wait: false
+      }
+    }
   }
 }
